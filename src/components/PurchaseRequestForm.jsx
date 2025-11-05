@@ -14,10 +14,9 @@ export default function PurchaseRequestForm() {
 
   // Example requester names
   const requesterNames = [
-    "Mohammed Aljajan",
-    "Abdulrahman Ali",
-    "Sara Ahmad",
-    "Yousef Khalil",
+    "Mohammed Haj Hamdo",
+    "Asia Haj Mousa",
+    "Mohammad Shehada Al Mohammad"
   ];
 
   const locationCodes = {
