@@ -12,7 +12,14 @@ export default function PurchaseRequestForm() {
 
   const [generatedCode, setGeneratedCode] = useState("");
 
-  // Map codes for locations and departments
+  // Example requester names
+  const requesterNames = [
+    "Mohammed Aljajan",
+    "Abdulrahman Ali",
+    "Sara Ahmad",
+    "Yousef Khalil",
+  ];
+
   const locationCodes = {
     Raqqa: "RQ",
     Hasakeh: "HK",
@@ -25,21 +32,17 @@ export default function PurchaseRequestForm() {
     Education: "EDU",
   };
 
-  // Generate code format: SY-RQ-WSH-2321
   const generateCode = () => {
     const country = "SY";
     const loc = locationCodes[formData.location] || "LOC";
     const dep = departmentCodes[formData.department] || "DEP";
-    const randomNum = Math.floor(1000 + Math.random() * 9000); // 4 digits
+    const randomNum = Math.floor(1000 + Math.random() * 9000);
     const code = `${country}-${loc}-${dep}-${randomNum}`;
     setGeneratedCode(code);
   };
 
   const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = (e) => {
@@ -76,13 +79,13 @@ export default function PurchaseRequestForm() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white flex flex-col items-center justify-center py-10 px-4">
-      {/* Header with Logo */}
-      <div className="flex flex-col items-center mb-8 animate-fade-in">
+    <div className="min-h-screen flex flex-col items-center justify-center py-10 px-4 bg-gray-50">
+      {/* Header */}
+      <div className="flex flex-col items-center mb-8">
         <img
           src="https://actionforhumanity.org/assets/images/logo-black.png"
           alt="Action For Humanity"
-          className="w-48 mb-3 drop-shadow-lg"
+          className="w-48 mb-3"
         />
         <h1 className="text-3xl font-bold text-blue-700 text-center">
           Purchase Request Form
@@ -93,21 +96,26 @@ export default function PurchaseRequestForm() {
       </div>
 
       {/* Form Card */}
-      <div className="w-full max-w-lg bg-white shadow-2xl rounded-2xl p-8 border-t-4 border-blue-600">
+      <div className="w-full max-w-lg bg-white shadow-xl rounded-2xl p-8">
         <form onSubmit={handleSubmit} className="space-y-5">
-          {/* Requester Name */}
+          {/* Requester Name Dropdown */}
           <div>
             <label className="block text-gray-700 font-semibold mb-1">
               Requester Name<span className="text-red-500">*</span>
             </label>
-            <input
-              type="text"
+            <select
               name="requesterName"
               value={formData.requesterName}
               onChange={handleChange}
               className="w-full border rounded-lg p-2.5 focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-              placeholder="Enter your full name"
-            />
+            >
+              <option value="">Select Requester</option>
+              {requesterNames.map((name, idx) => (
+                <option key={idx} value={name}>
+                  {name}
+                </option>
+              ))}
+            </select>
           </div>
 
           {/* Department */}
@@ -149,7 +157,7 @@ export default function PurchaseRequestForm() {
           {/* Request Date */}
           <div>
             <label className="block text-gray-700 font-semibold mb-1">
-              Request Date<span className="text-red-500">*</span>
+              Request Date
             </label>
             <input
               type="date"
@@ -160,13 +168,13 @@ export default function PurchaseRequestForm() {
             />
           </div>
 
-          {/* Description */}
-       <div>
+          {/* UPRN */}
+          <div>
             <label className="block text-gray-700 font-semibold mb-1">
               UPRN<span className="text-red-500">*</span>
             </label>
             <input
-              type="number"
+              type="text"
               name="uprn"
               value={formData.uprn}
               onChange={handleChange}
@@ -218,7 +226,6 @@ export default function PurchaseRequestForm() {
         </form>
       </div>
 
-      {/* Footer */}
       <footer className="mt-10 text-sm text-gray-500 text-center">
         © {new Date().getFullYear()} Action For Humanity – Logistics Department
       </footer>
