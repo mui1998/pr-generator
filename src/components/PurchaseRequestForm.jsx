@@ -26,7 +26,7 @@ export default function PurchaseRequestForm() {
   };
 
   const departmentCodes = {
-    Health: "HEA",
+    Health: "HC",
     WASH: "WSH",
     Education: "EDU",
   };
@@ -62,7 +62,7 @@ export default function PurchaseRequestForm() {
     };
 
     console.log("Purchase Request:", purchaseRequest);
-    alert(`Purchase Request ${purchaseRequest.code} has been created!`);
+  
   };
 
   const handleReset = () => {
@@ -86,7 +86,7 @@ export default function PurchaseRequestForm() {
           alt="Action For Humanity"
           className="w-48 mb-3"
         />
-        <h1 className="text-3xl font-bold text-blue-700 text-center">
+        <h1 className="text-3xl font-bold text-red-700 text-center">
           Purchase Request Form
         </h1>
         <p className="text-gray-500 text-center">
@@ -226,7 +226,7 @@ export default function PurchaseRequestForm() {
       </div>
 
       <footer className="mt-10 text-sm text-gray-500 text-center">
-        © {new Date().getFullYear()} Action For Humanity – Logistics Department
+        © {new Date().getFullYear()} Action For Humanity – Mohammed Aljajan
       </footer>
     </div>
   );
